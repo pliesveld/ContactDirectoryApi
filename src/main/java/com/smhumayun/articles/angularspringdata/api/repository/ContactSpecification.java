@@ -3,6 +3,7 @@ package com.smhumayun.articles.angularspringdata.api.repository;
 import com.smhumayun.articles.angularspringdata.api.model.Contact;
 import org.joda.time.DateTime;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class ContactSpecification {
                 if(filterPrimaryNumber != null) {
                     predicates.add(criteriaBuilder.like(root.get("primaryNumber"), "%" + filterPrimaryNumber + "%"));
                 }
-                if(filterSecondaryNumber != null) {
+                if(StringUtils.hasLength(filterSecondaryNumber)) {
                     predicates.add(criteriaBuilder.like(root.get("secondaryNumber"), "%" + filterSecondaryNumber + "%"));
                 }
                 if(filterEmailAddress != null) {
